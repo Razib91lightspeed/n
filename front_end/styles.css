@@ -1,0 +1,215 @@
+/* General page layout */
+body {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: flex-start; /* Align items at the start of the main axis */
+    align-items: center; /* Center items along the cross axis */
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+    margin: 0; /* Remove default margin */
+    font-family: Arial, sans-serif; /* Set font family */
+    background-color: #a9d6e5; /* Light blue background */
+}
+
+/* Navigation bar styles */
+nav {
+    display: flex; /* Use flexbox for layout */
+    gap: 150px; /* Space between buttons */
+    margin-bottom: 20px; /* Space below the navigation bar */
+    margin-top: 20px; /* Space above the navigation bar */
+}
+
+/* Button group styles */
+.button-group {
+    display: flex; /* Use flexbox for layout */
+    gap: 20px; /* Space between buttons */
+    margin-bottom: 20px; /* Space below the button group */
+    justify-content: center; /* Center buttons within the group */
+}
+
+/* View container styles */
+.view {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange items in a column */
+    align-items: center; /* Center items along the cross axis */
+    text-align: center; /* Center text within the view */
+    width: 100%; /* Ensure views take full width */
+    flex-grow: 1; /* Allow views to grow and take available space */
+}
+
+/* Specific view styles */
+#game-view, #info-view, #statistics {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange items in a column */
+    align-items: center; /* Center items along the cross axis */
+    justify-content: flex-start; /* Align items at the start of the main axis */
+    width: 100%; /* Ensure all views have the same width */
+    flex-grow: 1; /* Allow views to grow and take available space */
+    min-height: 400px; /* Ensure views maintain a minimum height */
+}
+
+/* Adjust paragraph spacing in the info-view section */
+#info-view p {
+    margin: 5px 0; /* Reduce the top and bottom margin to 5px */
+    line-height: 1.2; /* Adjust the line height for closer spacing */
+}
+
+/* Game container styles */
+.game-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: flex-start; /* Align items at the start of the main axis */
+    align-items: flex-start; /* Align items at the start of the cross axis */
+    width: 60%; /* Set the width of the game container */
+    gap: 20px; /* Space between elements inside the container */
+    padding-right: 15%; /* Add padding to push the stats to the right */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* 3D effect */
+    background-color: lightblue; /* Background color */
+    padding: 20px; /* Padding inside the container */
+    margin-left: 6%; /* Margin on the left to center the container */
+}
+
+/* Game stats container styles */
+#game-stats {
+    margin-top: 100px; /* Space above the stats container */
+    background-color: #f3eeee; /* White background for the stats */
+    padding: 10px; /* Padding inside the stats container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for a 3D effect */
+}
+
+/* Canvas container styles */
+.canvas-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the canvas horizontally */
+    align-items: center; /* Center the canvas vertically */
+    width: 600px; /* Set the width of the canvas container */
+    height: 600px; /* Set the height of the canvas container */
+}
+
+/* Canvas element styles */
+canvas {
+    border: 1px solid black; /* Border around the canvas */
+}
+
+/* Button styles */
+button {
+    padding: 15px 30px; /* Increase padding */
+    font-size: 18px; /* Increase font size */
+    border-radius: 8px; /* Slightly larger border radius */
+    margin: 10px; /* Add margin */
+    background-color: #f0f0f0; /* Button background color */
+    border: 1px solid #ccc; /* Button border */
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); /* 3D effect */
+    transition: transform 0.2s; /* Smooth transition for hover effect */
+}
+
+/* Button hover and active states */
+button:hover {
+    transform: translateY(-2px); /* Move the button up slightly on hover */
+}
+
+button:active {
+    box-shadow: none; /* Remove shadow on click */
+    transform: translateY(2px); /* Move the button down slightly on click */
+}
+
+/* Statistics container styles */
+#statistics .stats-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-around; /* Space between the two tables */
+    width: 80%; /* Set the width of the container */
+    margin-top: 20px; /* Space above the stats container */
+}
+
+/* Stats table styles */
+.stats-table {
+    background-color: #fff; /* White background for the tables */
+    padding: 10px; /* Padding inside the tables */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for a 3D effect */
+    width: 45%; /* Set the width of each table */
+}
+
+.stats-table h3 {
+    margin-top: 0; /* Remove top margin */
+}
+
+/* Stats table and cell styles */
+.stats-table table {
+    width: 100%; /* Full width table */
+    border-collapse: collapse; /* Collapse borders */
+}
+
+.stats-table table, .stats-table th, .stats-table td {
+    border: 1px solid #ccc; /* Border for table, header, and cells */
+}
+
+.stats-table th, .stats-table td {
+    padding: 8px; /* Padding inside table cells */
+    text-align: left; /* Left align text */
+}
+
+/* Chart container styles */
+.chart-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the charts horizontally */
+    width: 90%; /* Set the width of the container */
+    margin-top: 20px; /* Space above the chart container */
+    /* margin-left: 14%; Move the charts slightly to the right */
+}
+
+#chart-statistics, #chart-highest {
+    width: 40.50% !important; /* Set the width of each chart */
+    height: 400px !important; /* Set the height of each chart */
+    display: block; /* Ensure the canvas is a block element */
+    margin: 0 2%; /* Space between the charts */
+}
+
+/* Game chart styles */
+#chart-game {
+    width: 45% !important; /* Set the width of the chart for the game page */
+    height: 550px !important; /* Set the height of the chart */
+    display: block; /* Ensure the canvas is a block element */
+    margin: 0 2%; /* Space between the charts */
+}
+
+/* Statistics header styles */
+#statistics h2 {
+    margin-bottom: 10px; /* Space below the header */
+}
+
+/* Statistics button group styles */
+#statistics .button-group {
+    margin-top: 20px; /* Space above the button group */
+}
+
+/* Info view section styles */
+.info-title {
+    font-size: 36px; /* Set the font size of the title */
+    font-weight: bold; /* Make the title bold */
+    margin-bottom: 20px; /* Space below the title */
+    color: #333; /* Set the color of the title */
+}
+
+.info-author {
+    font-size: 18px; /* Set the font size of the author */
+    font-style: italic; /* Make the author text italic */
+    margin-bottom: 20px; /* Space below the author text */
+    color: #555; /* Set the color of the author text */
+}
+
+.info-subtitle {
+    font-size: 24px; /* Set the font size of the subtitle */
+    font-weight: bold; /* Make the subtitle bold */
+    margin-top: 20px; /* Space above the subtitle */
+    margin-bottom: 10px; /* Space below the subtitle */
+}
+
+.info-section {
+    margin-bottom: 20px; /* Space below each info section */
+}
+
+.active {
+    background-color: #4caaaf; /* Active button background color */
+    color: white; /* Active button text color */
+}

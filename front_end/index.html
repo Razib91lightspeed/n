@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation bar with buttons to switch between views -->
+    <nav>
+        <button onclick="showGame()">Game</button>
+        <button onclick="showStatistics()">Statistics</button>
+        <button onclick="showInfo()">Information</button>
+    </nav>
+    <!-- Game view container -->
+    <div id="game-view" class="view">
+        <div class="game-container">
+            <div class="canvas-container">
+                <!-- Canvas for rendering the game grid and snake -->
+                <canvas id="game-canvas"></canvas>
+            </div>
+            <div id="game-stats" class="stats-container">
+                 <!-- Game statistics displayed to the user -->
+                <p>Points: <span id="points">0</span></p>
+                <p>Current Length: <span id="current-length">1</span></p>
+                <p>Target Length: <span id="target-length">5</span></p>
+                <p>Timer: <span id="timer">0</span> seconds</p> <!-- Added Timer -->
+                <p>Total Apple Eaten: <span id="total-apples-eaten">0</span></p>
+                <p>Highest Apple Eaten: <span id="highest-apples-eaten">0</span></p>
+                <p>High Score: <span id="high-score">0</span></p>
+                <p>Total Number of Game Played: <span id="total-games-played">0</span></p>
+                <p>Current Game Number: <span id="current-game-number">1</span></p>
+            </div>
+        </div>
+        <div class="button-group">
+            <!-- Buttons to pause and restart the game -->
+            <button onclick="pauseGame()">Pause</button>
+            <button onclick="restartGame()">Restart</button>
+        </div>
+        <canvas id="chart-game" width="600" height="300"></canvas>
+    </div>
+     <!-- Info view container -->
+    <div id="info-view" class="view" style="display: none;">
+        <h1 class="info-title">Snake Game Info</h1>
+        <h2 class="info-subtitle">Author's Information</h2>
+        <p class="info-author">Name: Razib Hasan</p>
+        <p class="info-dev">Depertment: Software Engineering</p>
+        <p class="info-school">School: Tampere University of Applied Sciences</p>
+        <p class="info-address">Address: Kuntokatu 3, 33520 Tampere, Finland 🇫🇮</p>
+
+        <h2 class="info-subtitle">Usage Instructions</h2>
+        <div class="info-section">
+            <p class="info-text">Welcome to the Snake Game! Your objective is to navigate the snake around the grid, collect apples, and grow as long as possible while avoiding obstacles and the snake's own tail.</p>
+        </div>
+
+        <div class="info-section">
+            <ul class="info-list">
+                <li><strong>How to start this game:</strong> Use the left arrow key to start the game.</li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <ul class="info-list">
+                <li><strong>Control the Snake:</strong> Use the arrow keys on your keyboard to navigate the snake:
+                    <ul>
+                        <li><strong>Up Arrow:</strong> Move the snake up.</li>
+                        <li><strong>Down Arrow:</strong> Move the snake down.</li>
+                        <li><strong>Left Arrow:</strong> Move the snake left. </li>
+                        <li><strong>Right Arrow:</strong> Move the snake right.</li>
+                    </ul>
+                    <li><strong>Double Key:</strong> Do not press double key to avoid accidentally ending the game.
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <ul class="info-list">
+                <li><strong>Objective:</strong> The goal is to grow the snake by collecting apples. Each apple collected adds 5 segments to the snake's length and 10 points to your score.</li>
+            </ul>
+        </div>
+
+        <div class="info-section">
+            <ul class="info-list">
+                <li><strong>Avoid Collisions:</strong> Ensure the snake does not collide with the walls, obstacles, or its own tail, as this will end the game.</li>
+            </ul>
+        </div>
+
+        <h2 class="info-subtitle">General Application Information</h2>
+        <div class="info-section">
+            <ul class="info-list">
+                <li><strong>Programming Language:</strong> JavaScript</li>
+                <li><strong>Framework:</strong> None (Vanilla JavaScript)</li>
+                <li><strong>Libraries:</strong>
+                    <ul>
+                        <li>Chart.js (for rendering charts)</li>
+                    </ul>
+                </li>
+                <li><strong>Backend:</strong>
+                    <ul>
+                        <li>Node.js (for server-side logic and API)</li>
+                        <li>Express (for handling HTTP requests and responses)</li>
+                    </ul>
+                </li>
+                <li><strong>Styles:</strong> CSS</li>
+                <li><strong>Canvas Rendering:</strong> HTML5 Canvas API</li>
+                <li><strong>Additional Libraries:</strong>
+                    <ul>
+                        <li>CORS (for enabling Cross-Origin Resource Sharing)</li>
+                        <li>Body-parser (for parsing incoming request bodies in middleware)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="button-group">
+            <!-- Button to go back to the game view -->
+            <button onclick="showGame()">Back to Game</button>
+        </div>
+    </div>
+
+
+<!-- Statistics view container -->
+    <div id="statistics" class="view" style="display: none;">
+        <h2>Game Statistics</h2>
+        <div class="stats-container">
+            <div class="stats-table">
+                <h3>Current Game</h3>
+                <table>
+                     <!-- Current game statistics -->
+                    <tr><td>Total Points:</td><td><span id="current-total-points">0</span></td></tr>
+                    <tr><td>Total Apples Eaten:</td><td><span id="current-total-apples">0</span></td></tr>
+                    <tr><td>Game Duration:</td><td><span id="current-game-duration">0</span> seconds</td></tr>
+                    <tr><td>Paused Duration:</td><td><span id="current-paused-duration">0</span> seconds</td></tr>
+                    <tr><td>Total Snake Length:</td><td><span id="current-total-length">0</span></td></tr>
+                    <tr><td>Game Number:</td><td><span id="current-game-number-stat">0</span></td></tr>
+                </table>
+            </div>
+            <div class="stats-table">
+                <h3>Highest Score Game Data</h3>
+                <table>
+                    <!-- Highest score game statistics -->
+                    <tr><td>Total Points:</td><td><span id="highest-total-points">0</span></td></tr>
+                    <tr><td>Total Apples Eaten:</td><td><span id="highest-total-apples">0</span></td></tr>
+                    <tr><td>Game Duration:</td><td><span id="highest-game-duration">0</span> seconds</td></tr>
+                    <tr><td>Paused Duration:</td><td><span id="highest-paused-duration">0</span> seconds</td></tr>
+                    <tr><td>Total Snake Length:</td><td><span id="highest-total-length">0</span></td></tr>
+                    <tr><td>Game Number:</td><td><span id="highest-game-number">0</span></td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="chart-container">
+            <!-- Canvases for displaying charts -->
+            <canvas id="chart-statistics" width="600" height="300"></canvas>
+            <canvas id="chart-highest" width="600" height="300"></canvas>
+        </div>
+        <div class="button-group">
+            <!-- Button to go back to the game view -->
+            <button onclick="showGame()">Back to Game</button>
+        </div>
+    </div>
+    <!-- Link to the JavaScript file containing the game logic -->
+    <script src="script.js"></script>
+</body>
+</html>
