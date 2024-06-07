@@ -3,13 +3,13 @@
 ## Step 1. Clone this project using terminal (macOs)
 
 ```bash
-git clone https://github.com/Razib91lightspeed/snake_game.git
+git clone https://github.com/Razib91lightspeed/snake-game.git
 ```
 
 ## Step 2. Navigate to this directory
 
 ```bash
-cd snake_game
+cd snake-game
 ```
 ## Step 3. Open this project in VScode
 
